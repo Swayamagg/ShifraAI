@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import AssistantPreview from '../components/AssistantPreview'
 
 const Home = ({user}) => {
   const navigate=useNavigate()
@@ -35,7 +36,9 @@ const Home = ({user}) => {
                 Build Your Assistant
               </button>
             </div>
+            <p className='mt-5 text-xs sm:text-sm text-gray-400'>Free plan 200 AI responses</p>
           </div>
+          <AssistantPreview/>
         </div>
       </section>
     </div>
