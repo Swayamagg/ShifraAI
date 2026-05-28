@@ -2,6 +2,29 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import AssistantPreview from '../components/AssistantPreview'
 
+const steps=[
+  {
+    step:"01",
+    title:"Signup with free",
+    desc:"Continue with Google and create your assistant instantly."
+  },
+  {
+    step:"02",
+    title:"Customize assistant",
+    desc:"Set your business name, tone, voice and theme."
+  },
+  {
+    step:"03",
+    title:"Train your assistant",
+    desc:"Add business details and personalize responses."
+  },
+  {
+    step:"04",
+    title:"Embed anywhere",
+    desc:"Copy one script tag and add it your website."
+  },
+]
+
 const Home = ({user}) => {
   const navigate=useNavigate()
   return (
@@ -41,6 +64,37 @@ const Home = ({user}) => {
           <AssistantPreview/>
         </div>
       </section>
+      <section className='px-4 sm:px-6 lg:px-8 py-20 bg-white'>
+        <div className='max-w-6xl mx-auto'>
+          <div className='text-center mb-14'>
+            <h2 className='text-3xl sm:text-4xl font-bold text-[#081028]'>Get started in minutes</h2>
+            <p className='text-gray-500 mt-3 text-sm sm:text-base '>Simple setup. No complicated integration.</p>
+          </div>
+          <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6'>
+            {steps.map((s,i)=>(
+              <div key={i} className='group bg-[#f8fafc] hover:bg-white border border-gray-100 rounded-[28px] p-7 transition-all hover:shadow-[0_15px_50px_rgba(0,0,0,0.06)]'>
+                <span className='text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-emerald-500'>{s.step}</span>
+                <h3 className='mt-5 text-lg font-semibold text-[#081028]'>{s.title}</h3>
+                <p className='mt-3 text-sm text-gray-500 leading-relaxed'>{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <footer className='px-6 py-10 bg-[#081028]'>
+        <div className='max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left'>
+          <div>
+            <div onClick={()=>navigate("/")} className='flex items-center gap-2.5'>
+              {/* <img src={} alt='logo' className='h-9 object-contain w-auto' /> */}
+              <h1 className='font-bold text-xl leading-none text-gray-100'>Shifra{" "}
+                <span className='text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-emerald-500'>AI</span>
+             </h1>
+        </div>
+        <p className='text-gray-400 text-sm mt-1'>Voice AI assistant for websites.</p>
+          </div>
+          <p className='text-gray-500 text-sm'>©{new Date().getFullYear()} ShifraAI. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   )
 }
