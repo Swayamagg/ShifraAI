@@ -5,22 +5,31 @@ import authRoute from './routes/auth.js';
 import connectDB from './config/connectDB.js';
 import cookieParser from 'cookie-parser';
 import userRoute from './routes/user.js';
+import assistantRoute from './routes/assistant.js';
 dotenv.config()
 
 const app=express()
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors({
-    origin:"http://localhost:5173",
+
+const privateCors=
+cors({
+    origin:["http://localhost:5173"],
     credentials:true
-}))
+});
+
+const publicCors=
+cors({
+    origin:"*",
+});
 
 
 app.get("/",(req,res)=>{
     res.send("hello from server")
 })
-app.use("/api/auth",authRoute)
-app.use("/api/user",userRoute)
+app.use("/api/auth",privateCors,authRoute)
+app.use("/api/user",privateCors,userRoute)
+app.use("/api/assistant",publicCors,assistantRoute)
 const port=process.env.PORT;
 app.listen(port,()=>{
     console.log("server started")
