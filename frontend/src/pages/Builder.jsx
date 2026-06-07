@@ -24,7 +24,7 @@ const Builder = ({user,setUser}) => {
   const [loading,setLoading]=useState(false)
 
 const remainMsg=Math.max(0,(user?.reqLimit || 0)-(user?.totalMsg || 0));
-const remainDays=user?.proExpiresAt ? Math.max(0,Math.ceil((new Date(user?.proExpiresAt)-new Date()))/(1000*60*60*24)) : 0 ;
+const remainDays=user?.proExpiresAt ? Math.max(0,Math.ceil((new Date(user?.proExpiresAt)-new Date())/(1000*60*60*24))) : 0 ;
 const addPage=()=>{
   if(!pageName || !pagePath) return;
   const newPage={
@@ -78,7 +78,7 @@ const embedCode=`<script src="${CLIENT_URL}/assistant.js" data-user-id="${user._
             </div>
             <div className='rounded-2xl border border-gray-100 bg-[#f8fafc] p-4'>
               <p className='text-sm text-gray-400'>{user?.plan === "free" ? "Messages Left" : "Plan Expiry"}</p>
-              <h2 className='text-xl font-bold mt-1 capitalize text-[#081028]'>{user?.plan === "free" ? remainMsg : remainDays}</h2>
+              <h2 className='text-xl font-bold mt-1 capitalize text-[#081028]'>{user?.plan === "free" ? remainMsg : remainDays} days</h2>
             </div>
            </div>
            <div className='mt-7'>

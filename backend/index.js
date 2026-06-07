@@ -6,6 +6,7 @@ import connectDB from './config/connectDB.js';
 import cookieParser from 'cookie-parser';
 import userRoute from './routes/user.js';
 import assistantRoute from './routes/assistant.js';
+import billingRoute from './routes/billing.js';
 dotenv.config()
 
 const app=express()
@@ -30,6 +31,7 @@ app.get("/",(req,res)=>{
 app.use("/api/auth",privateCors,authRoute)
 app.use("/api/user",privateCors,userRoute)
 app.use("/api/assistant",publicCors,assistantRoute)
+app.use("/api/billing",privateCors,billingRoute)
 const port=process.env.PORT;
 app.listen(port,()=>{
     console.log("server started")
