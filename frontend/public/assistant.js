@@ -7,7 +7,7 @@
     //Load CSS
     const link=document.createElement("link")
     link.rel="stylesheet" 
-    link.href="http://localhost:5173/assistant.css"
+    link.href="https://shifraai-5u38.onrender.com/assistant.css"
     document.head.appendChild(link)
  
     //create popup
@@ -65,7 +65,7 @@
 
      <button class="shifra-mic">
 
-      <img src="http://localhost:5173/mic.svg" alt="mic" class="shifra-mic-icon" />
+      <img src="https://shifraai-5u38.onrender.com/mic.svg" alt="mic" class="shifra-mic-icon" />
      </button>
      </div>
     </div>
@@ -75,7 +75,7 @@
     // floating button
     const button=document.createElement("button")
     button.className=`shifra-btn theme-${theme}`
-    button.innerHTML=`<img src="http://localhost:5173/logo.png" alt="logo"/>`;
+    button.innerHTML=`<img src="https://shifraai-5u38.onrender.com/logo.png" alt="logo"/>`;
     document.body.appendChild(button)
 
    //toggle popup
