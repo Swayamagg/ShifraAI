@@ -15,7 +15,7 @@ app.use(cookieParser())
 
 const privateCors=
 cors({
-    origin:["http://localhost:5173"],
+    origin:["https://shifraai-5u38.onrender.com"],
     credentials:true
 });
 
