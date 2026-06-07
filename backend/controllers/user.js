@@ -14,7 +14,7 @@ export const getCurrentUser=async(req,res) => {
 
 export const saveAssistant=async (req,res) => {
     try{
-    const {assistantName,businessName,buisnessType,tone,theme,pages,geminiApiKey,geminiStatus}=req.body;
+    const {assistantName,businessName,buisnessType,businessDescription,tone,theme,pages,geminiApiKey,geminiStatus}=req.body;
     const user=await User.findById(req.userId);
     if(!user){
             return res.status(404).json({message:"Failed to get current user"})
@@ -22,6 +22,7 @@ export const saveAssistant=async (req,res) => {
     user.assistantName=assistantName;
     user.businessName=businessName;
     user.buisnessType=buisnessType;
+    user.businessDescription=businessDescription;
     user.tone=tone;
     user.theme=theme;
     if(geminiApiKey){
@@ -31,7 +32,7 @@ export const saveAssistant=async (req,res) => {
     user.pages=pages || [];
     user.isSetupComplete=true;
     await user.save()
-    return res.status(200).json({message:"Assistant saved successfully"})
+    return res.status(200).json({message:"Assistant saved successfully",user})
 } catch(err){
     return res.status(500).json({message:`assistant error ${err}`})
 }

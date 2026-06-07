@@ -188,7 +188,7 @@ const embedCode=`<script src="${CLIENT_URL}/assistant.js" data-user-id="${user._
                 ))}
               </div>
           </div>
-          <button disabled={loading} onClick={saveAssistant} className='w-full h-14 rounded-2xl bg-gradient-to-r from-purple-500 to-emerald-500 text-white font-semibold '>
+          <button disabled={loading || !assistantName || !businessName || !businessType || !geminiApiKey || !businessDesc} onClick={saveAssistant} className='w-full h-14 rounded-2xl bg-gradient-to-r from-purple-500 to-emerald-500 text-white font-semibold disabled:opacity-50 disabled:cursor-not-allowed'>
             {loading ? "Saving..." : user.isSetupComplete ? "Update Assistant" : "Save Assistant"}
           </button>
         </div>}

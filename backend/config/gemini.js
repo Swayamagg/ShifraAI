@@ -10,7 +10,7 @@ try {
     const response=await fetch(`${Gemini_URL}?key=${apikey}`,{
         method:"POST",
         headers:{
-            "Content-Type":application/json
+            "Content-Type":"application/json"
         },
         body:JSON.stringify({
            contents:[
@@ -41,7 +41,7 @@ try {
      user.geminiStatus="active";
      await user.save()
 
-    const data=response.json()
+    const data=await response.json()
     const text=data?.candidates?.[0]?.content?.parts?.[0]?.text;
 
     if(!text){

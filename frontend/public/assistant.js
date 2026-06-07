@@ -165,7 +165,52 @@
 
     userText.innerText="You: " + text
     recognition.stop();
+
+
+    setTimeout(async()=>{
+    try {
+      status.innerText="Thinking..."
+
+      const res=await fetch("http://localhost:8000/api/assistant/ask",
+        {
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify({
+            message:text,
+            userId
+          })
+        }
+      )
+      const data=await res.json()
+      console.log(data)
+      if (data.success) {
+        if(data.action === "navigate"){
+          speak(data.response)
+
+          setTimeout(()=>{
+            window.location.href=data.path
+          },1500)
+        }else{
+          speak(data.aiResponse)
+        }
+      } else {
+        speak("Check Plan")
+      }
+    } catch (error) {
+      console.log(error)
+      speak("Server error")
+    }
+   },600)
+   };
+
+   recognition.onerror=()=>{
+    status.innerText="Tap button to Speak"
+    wave.style.opacity="0";
    }
-   } 
+  } else{
+    status.innerText="Speech recognition not supported"
+  }
 })
 ();

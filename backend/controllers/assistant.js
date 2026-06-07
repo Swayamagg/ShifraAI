@@ -34,7 +34,7 @@ export const askAssistant=async(req,res)=>{
       return res.status(400).json({message:"Free limit reached"})
     }
     if(user.plan === "pro" && new Date(user.proExpiresAt) < new Date()){
-        user.plan ==="free"
+        user.plan ="free"
         await user.save()
         return res.status(400).json({message:"Pro plan expired"})
     }
@@ -53,13 +53,13 @@ export const askAssistant=async(req,res)=>{
                 if(req.body.currentPath===matchedPage.path){
                     return res.json({success:true,response:`${matchedPage.name} already open`})
                 }
+                return res.json({
+                    success:true,
+                    action:"navigate",
+                    path:matchedPage.path,
+                    response:`Opening ${matchedPage.name}`
+                })
             }
-            return res.json({
-                success:true,
-                action:"navigate",
-                path:matchedPage.path,
-                response:`Opening ${matchedPage.name}`
-            })
          }
     }
     const prompt=`
@@ -92,7 +92,7 @@ export const askAssistant=async(req,res)=>{
 
     `;
 
-    const aiResponse=geminiResponse(prompt,user.geminiApiKey,user)
+    const aiResponse=await geminiResponse({prompt,apikey:user.geminiApiKey,user})
         if(user.plan === "free"){
             user.totalMsg +=1;
             await user.save()
